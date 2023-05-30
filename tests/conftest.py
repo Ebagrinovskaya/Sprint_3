@@ -1,26 +1,11 @@
 from selenium import webdriver
 import time
 import pytest
+from urls import Urls
 
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site")
+    driver.get(Urls.STELLAR_BURGERS)
     yield driver
     driver.quit()
-
-@pytest.fixture
-def fake_name():
-    return "Elena"
-
-@pytest.fixture
-def fake_email():
-    return "test102@yandex.ru"
-
-@pytest.fixture
-def fake_password():
-    return "1q2w3e"
-
-@pytest.fixture
-def fake_wrong_password():
-    return "1q2w"
