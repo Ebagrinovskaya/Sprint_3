@@ -6,8 +6,8 @@ import pytest
 def driver():
     driver = webdriver.Chrome()
     driver.get("https://stellarburgers.nomoreparties.site")
-    time.sleep(3)
-    return driver
+    yield driver
+    driver.quit()
 
 @pytest.fixture
 def fake_name():

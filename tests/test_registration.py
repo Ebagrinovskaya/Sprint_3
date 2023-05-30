@@ -31,9 +31,6 @@ def test_register(driver):
 
     assert driver.find_element(*Locators.LOGIN_PAGE_MAIN_LABEL) != None
 
-    driver.close()
-    time.sleep(3)
-
 def test_register_error(driver):
     faker = Faker()
     driver.find_element(*Locators.MAIN_MENU_LK_BUTTON).click()
@@ -59,6 +56,3 @@ def test_register_error(driver):
     time.sleep(3)
 
     assert driver.find_element(*Locators.REG_PAGE_ERROR_PASSWORD) != None
-
-    driver.close()
-    time.sleep(3)

@@ -19,7 +19,3 @@ def test_constructor(driver):
     time.sleep(3)
 
     assert driver.find_element(*Locators.CONSTRUCTOR_PAGE_ROLL_DIV) != None
-
-    driver.close()
-    time.sleep(3)
-

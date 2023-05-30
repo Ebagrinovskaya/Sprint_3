@@ -26,9 +26,6 @@ def test_go_to_lk(fake_email, fake_password, driver):
 
     assert driver.find_element(*Locators.LK_PAGE_MAIN_LABEL) != None
 
-    driver.close()
-    time.sleep(3)
-
 def test_go_to_constructor_from_lk(fake_email, fake_password, driver):
     driver.find_element(*Locators.MAIN_MENU_LK_BUTTON).click()
     time.sleep(3)
@@ -56,9 +53,6 @@ def test_go_to_constructor_from_lk(fake_email, fake_password, driver):
 
     assert driver.find_element(*Locators.CONSTRUCTOR_PAGE_MAIN_LABEL) != None
 
-    driver.close()
-    time.sleep(3)
-
 def test_logout(fake_email, fake_password, driver):
     driver.find_element(*Locators.MAIN_MENU_LK_BUTTON).click()
     time.sleep(3)
@@ -85,8 +79,3 @@ def test_logout(fake_email, fake_password, driver):
     time.sleep(3)
 
     assert driver.find_element(*Locators.LOGIN_PAGE_MAIN_LABEL) != None
-
-    driver.close()
-    time.sleep(3)
-
-

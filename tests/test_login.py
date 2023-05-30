@@ -24,9 +24,6 @@ def test_login_main(fake_email, fake_password, driver):
 
     assert driver.find_element(*Locators.CONSTRUCTOR_PAGE_MAIN_LABEL) != None
 
-    driver.close()
-    time.sleep(3)
-
 def test_login_lk(fake_email, fake_password, driver):
     driver.find_element(*Locators.MAIN_MENU_LK_BUTTON).click()
     time.sleep(3)
@@ -43,9 +40,6 @@ def test_login_lk(fake_email, fake_password, driver):
     time.sleep(3)
 
     assert driver.find_element(*Locators.CONSTRUCTOR_PAGE_MAIN_LABEL) != None
-
-    driver.close()
-    time.sleep(3)
 
 def test_login_reg(fake_email, fake_password, driver):
     driver.find_element(*Locators.CONSTRUCTOR_PAGE_LOGIN_BUTTON).click()
@@ -74,9 +68,6 @@ def test_login_reg(fake_email, fake_password, driver):
 
     assert driver.find_element(*Locators.CONSTRUCTOR_PAGE_MAIN_LABEL) != None
 
-    driver.close()
-    time.sleep(3)
-
 def test_login_error_password(fake_email, fake_wrong_password, driver):
     driver.find_element(*Locators.CONSTRUCTOR_PAGE_LOGIN_BUTTON).click()
     time.sleep(3)
@@ -93,9 +84,6 @@ def test_login_error_password(fake_email, fake_wrong_password, driver):
     time.sleep(3)
 
     assert driver.find_element(*Locators.LOGIN_PAGE_ERROR_PASSWORD) != None
-
-    driver.close()
-    time.sleep(3)
 
 def test_login_restore(fake_email, fake_password, driver):
     driver.find_element(*Locators.CONSTRUCTOR_PAGE_LOGIN_BUTTON).click()
@@ -123,6 +111,3 @@ def test_login_restore(fake_email, fake_password, driver):
     time.sleep(3)
 
     assert driver.find_element(*Locators.CONSTRUCTOR_PAGE_MAIN_LABEL) != None
-
-    driver.close()
-    time.sleep(3)
