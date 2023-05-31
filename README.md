@@ -6,6 +6,9 @@ test_register
 Регистрация с некорректным паролем
 test_register_error
 
+
+
+
 Вход по кнопке «Войти в аккаунт» на главной
 test_login_main
 
@@ -20,6 +23,8 @@ test_login_error_password
 
 вход через кнопку в форме восстановления пароля
 test_login_restore
+
+
 
 Переход в личный кабинет
 test_go_to_lk

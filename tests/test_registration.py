@@ -1,61 +1,31 @@
-import time
 import pytest
 import conftest
-from locators import MainMenuLocators
-from locators import LoginLocators
-from locators import RegistrationLocators
+from locators import *
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from faker import Faker
 from data import Data
+from conftest import *
 
 def test_register(driver):
+    """Регистрация с корректным паролем"""
     faker = Faker()
-    driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.REG_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*RegistrationLocators.MAIN_LABEL) != None
-
-    driver.find_element(*RegistrationLocators.NAME_INPUT).send_keys(faker.name())
-    time.sleep(3)
-
-    driver.find_element(*RegistrationLocators.EMAIL_INPUT).send_keys(faker.email())
-    time.sleep(3)
-
-    driver.find_element(*RegistrationLocators.PASSWORD_INPUT).send_keys(Data.PASSWORD)
-    time.sleep(3)
-
-    driver.find_element(*RegistrationLocators.REG_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
+    email = faker.email()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.REG_BUTTON)).click()
+    register(driver, faker.name(), email, Data.PASSWORD)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.CONSTRUCTOR_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
+    login(driver, email, Data.PASSWORD)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
 
 def test_register_error(driver):
+    """Регистрация с некорректным паролем"""
     faker = Faker()
-    driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    time.sleep(3)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.REG_BUTTON)).click()
 
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.REG_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*RegistrationLocators.MAIN_LABEL) != None
-
-    driver.find_element(*RegistrationLocators.NAME_INPUT).send_keys(faker.name())
-    time.sleep(3)
-
-    driver.find_element(*RegistrationLocators.EMAIL_INPUT).send_keys(faker.email())
-    time.sleep(3)
-
-    driver.find_element(*RegistrationLocators.PASSWORD_INPUT).send_keys(Data.WRONG_PASSWORD)
-    time.sleep(3)
-
-    driver.find_element(*RegistrationLocators.REG_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*RegistrationLocators.ERROR_PASSWORD) != None
+    register(driver, faker.name(), faker.email(), Data.WRONG_PASSWORD)
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(RegistrationLocators.ERROR_PASSWORD)) != None

@@ -1,118 +1,51 @@
-import time
 import pytest
 import conftest
-from locators import LoginLocators
-from locators import ConstructorLocators
-from locators import MainMenuLocators
-from locators import RegistrationLocators
-from locators import RestorePasswordLocators
+from locators import *
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from conftest import login
 from data import Data
 
 def test_login_main(driver):
-    driver.find_element(*ConstructorLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Data.EMAIL)
-    time.sleep(3)
-
-    passwordField = driver.find_element(*LoginLocators.PASSWORD_INPUT)
-    passwordField.send_keys(Data.PASSWORD)
-    time.sleep(3)
-    value = passwordField.get_attribute('value')
-    assert len(value) == 6
-
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*ConstructorLocators.MAIN_LABEL) != None
+    """Вход по кнопке «Войти в аккаунт» на главной"""
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
+    login(driver, Data.EMAIL, Data.PASSWORD)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    driver.find_element(*MainMenuLocators.LK_BUTTON).click()
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
 
 def test_login_lk(driver):
+    """Вход через кнопку «Личный кабинет»"""
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
+    login(driver, Data.EMAIL, Data.PASSWORD)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Data.EMAIL)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Data.PASSWORD)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*ConstructorLocators.MAIN_LABEL) != None
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
 
 def test_login_reg(driver):
-    driver.find_element(*ConstructorLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
+    """Вход через кнопку в форме регистрации"""
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.REG_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(RegistrationLocators.LOGIN_BUTTON)).click()
+    login(driver, Data.EMAIL, Data.PASSWORD)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    driver.find_element(*MainMenuLocators.LK_BUTTON).click()
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
 
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.REG_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*RegistrationLocators.MAIN_LABEL) != None
-
-    driver.find_element(*RegistrationLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Data.EMAIL)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Data.PASSWORD)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*ConstructorLocators.MAIN_LABEL) != None
 
 def test_login_error_password(driver):
-    driver.find_element(*ConstructorLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Data.EMAIL)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Data.WRONG_PASSWORD)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.ERROR_PASSWORD) != None
+    """Вход с неправильным паролем"""
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
+    login(driver, Data.EMAIL, Data.WRONG_PASSWORD)
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.ERROR_PASSWORD)) != None
 
 def test_login_restore(driver):
-    driver.find_element(*ConstructorLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.RESTORE_PASSWORD_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*RestorePasswordLocators.MAIN_LABEL) != None
-
-    driver.find_element(*RestorePasswordLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*LoginLocators.MAIN_LABEL) != None
-
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Data.EMAIL)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Data.PASSWORD)
-    time.sleep(3)
-
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-    time.sleep(3)
-
-    assert driver.find_element(*ConstructorLocators.MAIN_LABEL) != None
+    """Вход через кнопку в форме восстановления пароля"""
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.RESTORE_PASSWORD_BUTTON)).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(RestorePasswordLocators.LOGIN_BUTTON)).click()
+    login(driver, Data.EMAIL, Data.PASSWORD)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    driver.find_element(*MainMenuLocators.LK_BUTTON).click()
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
