@@ -15,12 +15,13 @@ class ConstructorLocators:
     SAUCE_BUTTON = (By.XPATH, ".//*[contains(text(),'Соусы')]")
     # Кнопка секции начинок
     TOPPING_BUTTON = (By.XPATH, ".//*[contains(text(),'Начинки')]")
+
     # Активная секция булок
-    ROLL_DIV = (By.XPATH, "//body/div[@id='root']/div[1]/main[1]/section[1]/div[1]/div[1][contains(@class,'current')]")
+    ROLL_DIV = (By.XPATH, ".//div[contains(@class, 'current')]/span[text()='Булки']")
     # Активная секция соусов
-    SAUCE_DIV = (By.XPATH, "//body/div[@id='root']/div[1]/main[1]/section[1]/div[1]/div[2][contains(@class,'current')]")
+    SAUCE_DIV = (By.XPATH, ".//div[contains(@class, 'current')]/span[text()='Соусы']")
     # Активная секция начинок
-    TOPPING_DIV = (By.XPATH, "//body/div[@id='root']/div[1]/main[1]/section[1]/div[1]/div[3][contains(@class,'current')]")
+    TOPPING_DIV = (By.XPATH, ".//div[contains(@class, 'current')]/span[text()='Начинки']")
     # Кнопка входа на странице конструктора
     LOGIN_BUTTON = (By.XPATH, ".//*[contains(text(),'Войти в аккаунт')]")
 
@@ -28,9 +29,9 @@ class RegistrationLocators:
     # Заголовок страницы регистрации
     MAIN_LABEL = (By.XPATH, "//h2[contains(text(),'Регистрация')]")
     # Поле ввода имени на странице регистрации
-    NAME_INPUT = (By.XPATH, ".//input[@name='name']")
+    NAME_INPUT = (By.XPATH, "//label[contains(text(),'Имя')]/following-sibling::input")
     # Поле ввода почты на странице регистрации
-    EMAIL_INPUT = (By.XPATH, ".//form[@class='Auth_form__3qKeq mb-20']/fieldset[2]/div/div/input")
+    EMAIL_INPUT = (By.XPATH, "//label[contains(text(),'Email')]/following-sibling::input")
     # Поле ввода пароля на странице регистрации
     PASSWORD_INPUT = (By.XPATH, ".//input[@name='Пароль']")
     # Кнопка регистрации на странице регистрации
@@ -44,9 +45,9 @@ class LoginLocators:
     # Заголовок страницы входа
     MAIN_LABEL = (By.XPATH, "//h2[contains(text(), 'Вход')]")
     # Поле ввода почты на странице входа
-    EMAIL_INPUT = (By.XPATH, ".//form[@class='Auth_form__3qKeq mb-20']/fieldset[1]/div/div/input")
+    EMAIL_INPUT = (By.XPATH, ".//input[@name='name']")
     # Поле ввода пароля на странице входа
-    PASSWORD_INPUT = (By.XPATH, ".//form[@class='Auth_form__3qKeq mb-20']/fieldset[2]/div/div/input")
+    PASSWORD_INPUT = (By.XPATH, ".//input[@name='Пароль']")
     # Кнопка войти на странице входа
     LOGIN_BUTTON = (By.XPATH, ".//*[contains(text(),'Войти')]")
     # Кнопка регистрации на странице входа
