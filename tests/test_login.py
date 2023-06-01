@@ -4,7 +4,7 @@ from locators import *
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from conftest import login
+from login_page import *
 from data import Data
 
 def test_login_main(driver):

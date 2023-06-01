@@ -6,7 +6,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from faker import Faker
 from data import Data
-from conftest import *
+from login_page import *
+from registration_page import *
 
 def test_register(driver):
     """Регистрация с корректным паролем"""

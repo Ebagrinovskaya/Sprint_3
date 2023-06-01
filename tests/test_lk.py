@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from data import Data
-from conftest import *
+from login_page import *
 
 def test_go_to_lk(driver):
     """Переход в личный кабинет"""
