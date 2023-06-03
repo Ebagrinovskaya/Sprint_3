@@ -47,8 +47,8 @@ def test_login_error_password(driver):
     """Вход с неправильным паролем"""
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
     login(driver, Data.EMAIL, Data.WRONG_PASSWORD)
-
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.ERROR_PASSWORD)) != None
+    errorMessage = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.ERROR_PASSWORD))
+    assert errorMessage.text == 'Некорректный пароль'
 
 def test_login_restore(driver):
     """Вход через кнопку в форме восстановления пароля"""

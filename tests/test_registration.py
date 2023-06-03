@@ -32,4 +32,5 @@ def test_register_error(driver):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.REG_BUTTON)).click()
 
     register(driver, faker.name(), faker.email(), Data.WRONG_PASSWORD)
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(RegistrationLocators.ERROR_PASSWORD)) != None
+    errorMessage = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.ERROR_PASSWORD))
+    assert errorMessage.text == 'Некорректный пароль'
