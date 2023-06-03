@@ -13,7 +13,9 @@ def test_go_to_lk(driver):
     login(driver, Data.EMAIL, Data.PASSWORD)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_EMAIL_INPUT)).get_attribute('value') == Data.EMAIL
+    lkLabel = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL))
+    emailField = driver.find_element(*LkLocators.PROFILE_EMAIL_INPUT)
+    assert lkLabel and (emailField.get_attribute('value') == Data.EMAIL)
 
 def test_go_to_constructor_from_lk(driver):
     """Переход в окно конструктора из личного кабинета"""
