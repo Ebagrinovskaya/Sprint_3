@@ -62,6 +62,8 @@ class LkLocators:
     MAIN_LABEL = (By.XPATH, "//a[contains(text(),'Профиль')]")
     # Кнопка разлогиниться на странице личного кабинета
     LOGOUT_BUTTON = (By.XPATH, ".//*[contains(text(),'Выход')]")
+    # Поле Логин в Профиле
+    PROFILE_EMAIL_INPUT = (By.XPATH, "//label[contains(text(),'Логин')]/following-sibling::input")
 
 class RestorePasswordLocators:
     # Заголовок страницы восстановления пароля
