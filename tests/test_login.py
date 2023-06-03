@@ -13,7 +13,10 @@ def test_login_main(driver):
     login(driver, Data.EMAIL, Data.PASSWORD)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
+
+    lkLabel = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL))
+    emailField = driver.find_element(*LkLocators.PROFILE_EMAIL_INPUT)
+    assert (lkLabel != None) and (emailField.get_attribute('value') == Data.EMAIL)
 
 def test_login_lk(driver):
     """Вход через кнопку «Личный кабинет»"""
@@ -21,7 +24,10 @@ def test_login_lk(driver):
     login(driver, Data.EMAIL, Data.PASSWORD)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
+
+    lkLabel = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL))
+    emailField = driver.find_element(*LkLocators.PROFILE_EMAIL_INPUT)
+    assert (lkLabel != None) and (emailField.get_attribute('value') == Data.EMAIL)
 
 def test_login_reg(driver):
     """Вход через кнопку в форме регистрации"""
@@ -31,13 +37,17 @@ def test_login_reg(driver):
     login(driver, Data.EMAIL, Data.PASSWORD)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
+
+    lkLabel = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL))
+    emailField = driver.find_element(*LkLocators.PROFILE_EMAIL_INPUT)
+    assert (lkLabel != None) and (emailField.get_attribute('value') == Data.EMAIL)
 
 
 def test_login_error_password(driver):
     """Вход с неправильным паролем"""
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
     login(driver, Data.EMAIL, Data.WRONG_PASSWORD)
+
     assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.ERROR_PASSWORD)) != None
 
 def test_login_restore(driver):
@@ -48,4 +58,7 @@ def test_login_restore(driver):
     login(driver, Data.EMAIL, Data.PASSWORD)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
+
+    lkLabel = WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL))
+    emailField = driver.find_element(*LkLocators.PROFILE_EMAIL_INPUT)
+    assert (lkLabel != None) and (emailField.get_attribute('value') == Data.EMAIL)
