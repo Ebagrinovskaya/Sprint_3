@@ -11,17 +11,17 @@ def test_login_main(driver):
     """Вход по кнопке «Войти в аккаунт» на главной"""
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.LOGIN_BUTTON)).click()
     login(driver, Data.EMAIL, Data.PASSWORD)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
 
 def test_login_lk(driver):
     """Вход через кнопку «Личный кабинет»"""
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
     login(driver, Data.EMAIL, Data.PASSWORD)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
 
 def test_login_reg(driver):
     """Вход через кнопку в форме регистрации"""
@@ -29,9 +29,9 @@ def test_login_reg(driver):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.REG_BUTTON)).click()
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(RegistrationLocators.LOGIN_BUTTON)).click()
     login(driver, Data.EMAIL, Data.PASSWORD)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
 
 
 def test_login_error_password(driver):
@@ -46,6 +46,6 @@ def test_login_restore(driver):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(LoginLocators.RESTORE_PASSWORD_BUTTON)).click()
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(RestorePasswordLocators.LOGIN_BUTTON)).click()
     login(driver, Data.EMAIL, Data.PASSWORD)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.MAIN_LABEL))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located(ConstructorLocators.ASSEMBLE_BURGER_LABEL))
     driver.find_element(*MainMenuLocators.LK_BUTTON).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None

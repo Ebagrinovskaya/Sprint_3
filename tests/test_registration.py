@@ -20,7 +20,7 @@ def test_register(driver):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
     login(driver, email, Data.PASSWORD)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(MainMenuLocators.LK_BUTTON)).click()
-    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.MAIN_LABEL)) != None
+    assert WebDriverWait(driver, 10).until(EC.presence_of_element_located(LkLocators.PROFILE_LABEL)) != None
 
 def test_register_error(driver):
     """Регистрация с некорректным паролем"""

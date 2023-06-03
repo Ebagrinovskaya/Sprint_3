@@ -8,7 +8,7 @@ class MainMenuLocators:
 
 class ConstructorLocators:
     # Заголовок страницы конструктора
-    MAIN_LABEL = (By.XPATH, "//h1[contains(text(), 'Соберите бургер')]")
+    ASSEMBLE_BURGER_LABEL = (By.XPATH, "//h1[contains(text(), 'Соберите бургер')]")
     # Кнопка секции булок
     ROLL_BUTTON = (By.XPATH, ".//*[contains(text(),'Булки')]")
     # Кнопка секции соусов
@@ -26,8 +26,6 @@ class ConstructorLocators:
     LOGIN_BUTTON = (By.XPATH, ".//*[contains(text(),'Войти в аккаунт')]")
 
 class RegistrationLocators:
-    # Заголовок страницы регистрации
-    MAIN_LABEL = (By.XPATH, "//h2[contains(text(),'Регистрация')]")
     # Поле ввода имени на странице регистрации
     NAME_INPUT = (By.XPATH, "//label[contains(text(),'Имя')]/following-sibling::input")
     # Поле ввода почты на странице регистрации
@@ -43,7 +41,7 @@ class RegistrationLocators:
 
 class LoginLocators:
     # Заголовок страницы входа
-    MAIN_LABEL = (By.XPATH, "//h2[contains(text(), 'Вход')]")
+    LOGIN_LABEL = (By.XPATH, "//h2[contains(text(), 'Вход')]")
     # Поле ввода почты на странице входа
     EMAIL_INPUT = (By.XPATH, ".//input[@name='name']")
     # Поле ввода пароля на странице входа
@@ -59,15 +57,13 @@ class LoginLocators:
 
 class LkLocators:
     # Заголовок страницы личного кабинета
-    MAIN_LABEL = (By.XPATH, "//a[contains(text(),'Профиль')]")
+    PROFILE_LABEL = (By.XPATH, "//a[contains(text(),'Профиль')]")
     # Кнопка разлогиниться на странице личного кабинета
     LOGOUT_BUTTON = (By.XPATH, ".//*[contains(text(),'Выход')]")
     # Поле Логин в Профиле
     PROFILE_EMAIL_INPUT = (By.XPATH, "//label[contains(text(),'Логин')]/following-sibling::input")
 
 class RestorePasswordLocators:
-    # Заголовок страницы восстановления пароля
-    MAIN_LABEL = (By.XPATH, "//h2[contains(text(),'Восстановление пароля')]")
     # Кнопка войти на странице восстановления пароля
     LOGIN_BUTTON = (By.XPATH, ".//*[contains(text(),'Войти')]")
 
